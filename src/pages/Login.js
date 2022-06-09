@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import google from '../assets/google.png'
+import github from '../assets/github.png'
+import facebook from '../assets/facebook.png'
 
 const Login = () => {
 
@@ -8,9 +11,9 @@ const Login = () => {
     }
 
     return (
-        <div class="hero min-h-screen bg-base-100">
-            <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                <div class="card-body">
+        <div class="hero h-screen bg-accent">
+            <div class="card flex-shrink-0 mt-3 w-full max-w-sm lg:shadow-2xl bg-base-100">
+                <div class="card-body ">
                     <form onSubmit={handleLogin}>
 
                         <div class="form-control">
@@ -31,14 +34,23 @@ const Login = () => {
                             </label>
                         </div>
 
-                        <input className='btn btn-primary w-full mt-3' type="submit" value="Login" />
+                        <input className='btn btn-primary btn-outline w-full mt-3' type="submit" value="Login" />
                     </form>
                     <p>New Account create please ?  <Link className='text-secondary font-bold' to='/signup'>Sign Up</Link></p>
 
                     <div class="divider">OR</div>
-                    <div className='btn btn-primary'>
+                    
+                    <div className='flex justify-around items-center btn btn-primary btn-outline '>
                         continue with google
-                        <img src="" alt="" />
+                        <img className=' p-2 ml-4 w-12 h-12' src={google} alt="" />
+                    </div>
+                    <div className='flex justify-around items-center btn btn-primary btn-outline '>
+                        continue with github
+                        <img className=' p-2 ml-4 w-12 h-12' src={github} alt="" />
+                    </div>
+                    <div className='flex justify-around items-center btn btn-primary btn-outline '>
+                        continue with facebook
+                        <img className=' p-2 ml-4 w-12 h-12' src={facebook} alt="" />
                     </div>
 
 
