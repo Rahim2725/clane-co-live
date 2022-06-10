@@ -1,6 +1,16 @@
 [
     {
-        "service-name": "Cleaning Home Services",
+        "service_name": "Cleaning Home Services",
+        "price": "150",
+        "img": "https://i.ibb.co/GQqCzcc/ezgif-2-13609218cd.jpg"
+    },
+    {
+        "service_name": "Cleaning Car Services",
+        "price": "150",
+        "img": "https://i.ibb.co/8g6k9NT/shutterstock-752921533-car-washing-services-2-cm5j6.png"
+    },
+    {
+        "service_name": "Cleaning Office Services",
         "price": "150",
         "img": "https://i.ibb.co/0tDvx7Y/bigstock-Commercial-cleaning-crew-ladie-224186584.jpg"
     }
