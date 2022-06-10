@@ -1,17 +1,45 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
 
 
+
 const Navbar = ({ children }) => {
-    const [dark, setDark] = useState(false) ;
+    const [dark, setDark] = useState(false);
+    const { pathname } = useLocation();
     const [admin] = useAdmin();
 
     return (
         <div class="drawer sticky t-0 drawer-end" data-theme={dark ? 'dark' : 'light'} >
             <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+
             <div class="drawer-content flex flex-col">
+
                 <div class="w-full navbar bg-base-100 lg:px-20">
+                  
+                    {pathname.includes("dashboard") && (
+                        <label
+                            tabindex='0'
+                            for='my-drawer-2'
+                            class='btn btn-ghost lg:hidden '
+                        >
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                class='h-5 w-5'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                stroke='currentColor'
+                            >
+                                <path
+                                    stroke-linecap='round'
+                                    stroke-linejoin='round'
+                                    stroke-width='2'
+                                    d='M4 6h16M4 12h16M4 18h7'
+                                />
+                            </svg>
+                        </label>
+                    )}
+
                     <div class="flex-1 px-2 mx-2">Clean Co.</div>
                     <div class="flex-none lg:hidden">
                         <label for="my-drawer-3" class="btn btn-square btn-ghost">
@@ -23,9 +51,11 @@ const Navbar = ({ children }) => {
                             <li>
                                 <NavLink to='/' className='rounded-lg'>Home</NavLink>
                             </li>
-                            { admin && <li>
+
+                            {admin && <li>
                                 <NavLink to='/dashboard/Add-service' className='rounded-lg'>Dashboard</NavLink>
                             </li>}
+
                             <li>
                                 <NavLink to='/about' className='rounded-lg'>About</NavLink>
                             </li>
@@ -75,6 +105,11 @@ const Navbar = ({ children }) => {
                     <li>
                         <NavLink to='/' className='rounded-lg'>Home</NavLink>
                     </li>
+
+                    {admin && <li>
+                        <NavLink to='/dashboard/Add-service' className='rounded-lg'>Dashboard</NavLink>
+                    </li>}
+
                     <li>
                         <NavLink to='/about' className='rounded-lg'>About</NavLink>
                     </li>

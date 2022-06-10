@@ -10,6 +10,9 @@ import AddAdmin from "./pages/Dashboard/AddAdmin";
 import AddService from "./pages/Dashboard/AddService";
 import AdminRoute from "./authentication/AdminRoute";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -46,6 +49,7 @@ function App() {
           </Route>
         </Route>
       </Routes>
+      <ToastContainer/>
     </Navbar>
   );
 }
