@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import google from '../assets/google.png'
 import github from '../assets/github.png'
 import facebook from '../assets/facebook.png'
-import { useSignInWithEmailAndPassword, useSignInWithFacebook } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import Loading from '../components/Loading';
 
 const Login = () => {
+    // email and password this account create 
     const [
         signInWithEmailAndPassword,
         user,
@@ -15,11 +16,20 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
+    // google use this login 
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
-    const [signInWithFacebook, Fuser, Floading, Ferror] = useSignInWithFacebook(auth);
+    //github use this login 
+    const [signInWithGithub, giUser, giLoading, giError] = useSignInWithGithub(auth);
 
-    let errorMessage = <p className='text-red-500'> {error?.message} </p> ;
-    
+
+    // facebook use this login 
+    const [signInWithFacebook, fUser, fLoading, fError] = useSignInWithFacebook(auth);
+
+    let errorMessage = <p className='text-red-500'> {fError?.message} {error?.message}  {giError?.message}{gError?.message} </p>;
+
+
+    // login this email and password pass this login 
     const handleLogin = event => {
         event.preventDefault();
         const email = event.target.email.value;
@@ -29,7 +39,7 @@ const Login = () => {
         event.target.reset();
     }
 
-    if(loading ){
+    if (loading || fLoading || giLoading || gLoading) {
         return <Loading></Loading>
     }
 
@@ -65,11 +75,11 @@ const Login = () => {
 
                     <div class="divider">OR</div>
 
-                    <div className='flex justify-around items-center btn btn-primary btn-outline '>
+                    <div onClick={() => signInWithGoogle()} className='flex justify-around items-center btn btn-primary btn-outline '>
                         continue with google
                         <img className=' p-2 ml-4 w-12 h-12' src={google} alt="" />
                     </div>
-                    <div className='flex justify-around items-center btn btn-primary btn-outline '>
+                    <div onClick={() => signInWithGithub()} className='flex justify-around items-center btn btn-primary btn-outline '>
                         continue with github
                         <img className=' p-2 ml-4 w-12 h-12' src={github} alt="" />
                     </div>

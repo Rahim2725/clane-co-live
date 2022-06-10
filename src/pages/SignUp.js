@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import google from '../assets/google.png'
 import github from '../assets/github.png'
 import facebook from '../assets/facebook.png'
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { toast } from 'react-toastify';
 
 const SignUp = () => {
+
+    // create user email and password
     const [
         createUserWithEmailAndPassword,
         user,
@@ -15,7 +17,12 @@ const SignUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
 
+    // update profile name
     const [updateProfile, updating, UpError] = useUpdateProfile(auth);
+
+    // login  with this page google 
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
 
     let errorMessage = <p className='text-red-500'> {error?.message} {UpError?.message}</p>;
 
