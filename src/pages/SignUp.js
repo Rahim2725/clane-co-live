@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import google from '../assets/google.png'
 import github from '../assets/github.png'
 import facebook from '../assets/facebook.png'
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGithub, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../firebase.init';
 import { toast } from 'react-toastify';
 
@@ -22,6 +22,9 @@ const SignUp = () => {
 
     // login  with this page google 
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+    // login with this page github 
+    const [signInWithGithub, giUser, giLoading, giEerror] = useSignInWithGithub(auth);
 
 
     let errorMessage = <p className='text-red-500'> {error?.message} {UpError?.message}</p>;
@@ -75,11 +78,11 @@ const SignUp = () => {
 
                     <div class="divider">OR</div>
 
-                    <div className='flex justify-around items-center btn btn-primary btn-outline '>
+                    <div onClick={() => signInWithGoogle()} className='flex justify-around items-center btn btn-primary btn-outline '>
                         continue with google
                         <img className=' p-2 ml-4 w-12 h-12' src={google} alt="" />
                     </div>
-                    <div className='flex justify-around items-center btn btn-primary btn-outline '>
+                    <div onClick={() => signInWithGithub()} className='flex justify-around items-center btn btn-primary btn-outline '>
                         continue with github
                         <img className=' p-2 ml-4 w-12 h-12' src={github} alt="" />
                     </div>
